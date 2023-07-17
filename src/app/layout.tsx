@@ -1,5 +1,7 @@
+import Head from 'next/head';
 import './styles/globals.css';
 import type { Metadata } from 'next';
+import { ChatProvider } from '@/context/chatContext';
 
 export const metadata: Metadata = {
 	title: 'Ghastchats',
@@ -14,7 +16,14 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
+			<Head>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<link rel="icon" href="./favicon.ico" />
+			</Head>
+			<body>
+				<ChatProvider>{children}</ChatProvider>
+			</body>
 		</html>
 	);
 }

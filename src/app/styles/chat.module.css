@@ -1,0 +1,158 @@
+.background {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background-color: black;
+	color: white;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	justify-content: center;
+	align-items: center;
+}
+.chat {
+	width: 85%;
+	height: 85%;
+	border-radius: 10px;
+	backdrop-filter: blur(7.5px);
+	box-shadow: 0px 0px 40px 5px rgba(0, 0, 0, 0.1);
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	grid-auto-flow: column;
+	grid-template-columns: 3fr 1fr;
+	padding-top: 70px;
+}
+.chat_header {
+	position: absolute;
+	top: 0;
+	height: 55px;
+	width: 100%;
+	background: white;
+	border-radius: 15px 15px 0px 0px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 1.25rem;
+	font-size: 1.25rem;
+}
+.chat_settings {
+	transition: all 0.5s ease;
+	height: 100%;
+	padding: 1rem;
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-rows: 1fr 2fr;
+	gap: 30px;
+	overflow-y: scroll;
+	border-left: 1px solid white;
+}
+.chat_settings > div > h1 {
+	font-size: 1.25rem;
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: start;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+}
+.chat_settings > div > p,
+.chat_settings > div > button {
+	margin-left: 1rem;
+}
+.content {
+	width: 360px;
+}
+.participants p {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	grid-template-columns: auto 1fr;
+	gap: 10px;
+}
+.link .details {
+	display: grid;
+	grid-auto-flow: row;
+	gap: 10px;
+	transition: all 0.5s ease;
+}
+.details p {
+	max-width: 290px;
+}
+.link_code {
+	font-weight: 600;
+	font-size: 1.25rem;
+}
+.link button {
+	all: unset;
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	background-color: white;
+	border-radius: 5px;
+	color: black;
+	width: 220px;
+	height: 35px;
+	cursor: pointer;
+}
+@media (max-width: 768px) {
+	.chat {
+		width: 92%;
+		grid-template-columns: none;
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.chat_settings {
+		position: absolute;
+		height: 50px;
+		width: 100%;
+		top: 60px;
+		padding: 0.5rem 1rem;
+		grid-auto-flow: column;
+		grid-template-rows: none;
+		align-items: start;
+		justify-content: space-between;
+		border-left: none;
+	}
+	.chat_settings > div > h1 {
+		font-size: 1rem;
+	}
+	.chat_settings > div > p,
+	.chat_settings > div > button {
+		margin: 0;
+	}
+	.chat_settings {
+		border-radius: 0px 0px 15px 15px;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+	}
+	.details {
+		position: absolute;
+		left: 1rem;
+		top: 3rem;
+		padding: 0 0.5rem;
+		opacity: 0;
+	}
+	/* INTERACTIVITY */
+	.open {
+		height: 240px;
+	}
+	.hide {
+		opacity: 0;
+	}
+	.show {
+		opacity: 1;
+	}
+	.participants .details {
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.arrow {
+		display: none;
+	}
+}
