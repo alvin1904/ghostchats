@@ -1,0 +1,98 @@
+/* CSS RESET - Alvin Varghese */
+/* https://github.com/alvin1904 */
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-ms-text-size-adjust: 100%; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 1 */
+	height: 100%;
+}
+
+/* Set core root defaults */
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+
+/* Remove default margin */
+* {
+	margin: 0;
+	padding: 0;
+	font: inherit;
+	/* transition: all ease-in-out 250ms; */
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
+	background-color: transparent;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+	list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+	max-inline-size: 100%;
+	max-block-size: 100%;
+	border-style: none;
+}
+/* Make images easier to work with */
+img,
+picture,
+svg {
+	max-width: 100%;
+	display: block;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+	-webkit-user-select: auto;
+	outline-color: transparent;
+	border: 0;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+	white-space: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+	color: unset;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+	display: none;
+}
+
+*,
+:root {
+	font-family: 'Poppins', sans-serif;
+}
