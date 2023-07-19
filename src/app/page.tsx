@@ -1,10 +1,11 @@
-"use client"
+'use client';
 
 import styles from '@/app/styles/home.module.css';
 import { montserratFont } from '@/utils/fonts';
 import Gradients from '@/components/home/Gradients';
 import Header from '@/components/home/Header';
 import MainSection from '@/components/home/MainSection';
+import Copyright from '@/components/home/Copyright';
 
 export const FontStyling = () => (
 	<style jsx global>{`
@@ -22,6 +23,7 @@ export default function Home() {
 				<Header />
 				<MainSection />
 			</section>
+			<Copyright />
 		</main>
 	);
 }

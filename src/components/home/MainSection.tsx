@@ -1,6 +1,7 @@
 import styles from '@/app/styles/mainSection.module.css';
 import { ChangeEvent, useState } from 'react';
 import { acceptedChars } from '@/utils/types/code';
+import Popover from './Popover/Popover';
 
 export default function MainSection() {
 	const [code, setCode] = useState<string[]>(['', '', '', '', '', '']);
@@ -55,8 +56,17 @@ export default function MainSection() {
 	const onCreate = () => {
 		console.log('create');
 	};
-
+	const checkCode = () => {
+		for (let c in code) {
+			let ch = code[c];
+			console.log(ch);
+			console.log(!acceptedChars.includes(ch));
+			if (ch === '' || !acceptedChars.includes(ch)) return false;
+		}
+		return true;
+	};
 	const handleJoin = () => {
+		if (!checkCode()) return alert('Check the code and try again!');
 		console.log('join');
 	};
 	return (
@@ -88,6 +98,7 @@ export default function MainSection() {
 					})}
 				</div>
 				<button onClick={handleJoin}>Join dark room</button>
+				<Popover />
 			</div>
 		</div>
 	);

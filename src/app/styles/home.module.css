@@ -95,3 +95,15 @@
 		font-size: 18px;
 	}
 }
+.cr {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 101%;
+	margin-bottom: 1.25rem;
+}

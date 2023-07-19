@@ -1,0 +1,73 @@
+.popover {
+	background-color: white;
+	color: black;
+	height: 400px;
+	width: 500px;
+	position: absolute;
+	bottom: 25%;
+	border-radius: 15px;
+	overflow: hidden;
+	display: grid;
+	justify-items: center;
+	align-content: center;
+	gap: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.525);
+}
+.input {
+	width: 270px;
+	height: 35px;
+	border-bottom: 2px solid black;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 101%; /* 18.18px */
+}
+.input::placeholder {
+	opacity: 0.5;
+}
+.themeListed {
+	color: var(--bg-accent);
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	align-items: center;
+	gap: 5px;
+}
+.circle {
+	height: 12px;
+	width: 12px;
+	border-radius: 50%;
+	background-color: var(--bg-accent);
+}
+.list li {
+	list-style: none;
+	padding: 0px 5px;
+	cursor: pointer;
+	margin-left: 15px;
+	user-select: none;
+}
+.selected::before {
+	position: absolute;
+	content: '✔';
+	transform: translateX(-20px);
+	color: var(--bg-accent);
+	font-size: 1.2rem;
+}
+.button {
+	width: 270px;
+	height: 40px;
+	border-radius: 5px;
+	background-color: #000;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 101%; /* 18.18px */
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: all 0.3s ease-in-out;
+}
+.button:hover {
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+}
