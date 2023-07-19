@@ -1,6 +1,96 @@
-.roomCode input {
-	border: 1px solid black;
-	width: 30px;
-	height: 40px;
-	margin: 5px 0px; 
+.main {
+	height: 100vh;
+	width: 100vw;
+	background: #0f001e;
+	color: white;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+	z-index: 1000;
+	gap: 2rem;
+}
+.g1 {
+	position: absolute;
+	top: 5%;
+	left: 52%;
+	width: 504px;
+	height: 504px;
+	transform: rotate(-39.968deg);
+	border-radius: 504px;
+	background: linear-gradient(
+		180deg,
+		rgba(104, 176, 216, 0.9) 0%,
+		rgba(167, 112, 186, 0.9) 100%
+	);
+	filter: blur(100px);
+	z-index: 0;
+	display: none;
+}
+.g2 {
+	position: absolute;
+	top: 60%;
+	left: -5%;
+	width: 240px;
+	height: 240px;
+	border-radius: 50%;
+	background: linear-gradient(
+		180deg,
+		rgba(104, 176, 216, 0.9) 0%,
+		rgba(167, 112, 186, 0.9) 100%
+	);
+	filter: blur(20px);
+	z-index: 0;
+}
+.g3 {
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 314px;
+	height: 314px;
+	border-radius: 314px;
+	background: #a770ba;
+	filter: blur(250px);
+	z-index: 0;
+}
+.header {
+	text-align: center;
+	display: grid;
+	justify-items: center;
+}
+.header h1 {
+	color: #fff;
+	font-size: 55px;
+	font-weight: 900;
+	line-height: 101%;
+}
+.header h5 {
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 101%; /* 22.22px */
+}
+@media (min-width: 768px) {
+	.g1 {
+		display: grid;
+	}
+	.g2 {
+		top: 50%;
+		left: 21%;
+	}
+	.header h1 {
+		font-size: 80px;
+	}
+	.header h5 {
+		font-size: 18px;
+	}
 }
