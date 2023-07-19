@@ -6,6 +6,7 @@ export default function MainSection() {
 	const [code, setCode] = useState<string[]>(['', '', '', '', '', '']);
 
 	const handleChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		// FOR DESKTOP
 		const changeFocus = (value: string, id: number) => {
 			const target = `key${value === '' ? id - 1 : id + 1}`;
 			const input = document.getElementById(target);
@@ -29,6 +30,26 @@ export default function MainSection() {
 		// CHANGING FOCUS
 		if (value === 'Backspace') changeFocus('', id);
 		else changeFocus(value, id);
+	};
+
+	const handleNext = (e: ChangeEvent<HTMLInputElement>) => {
+		// FOR MOBILE
+		const value = e.target.value;
+		const id = parseInt(e.currentTarget.id[e.currentTarget.id.length - 1]);
+		setCode((prevCode) => {
+			const temp = [...prevCode];
+			temp[id] = value;
+			return temp;
+		});
+		if (value === '') {
+			const target = `key${id - 1}`;
+			const input = document.getElementById(target);
+			if (input) input.focus();
+		} else {
+			const target = `key${id + 1}`;
+			const input = document.getElementById(target);
+			if (input) input.focus();
+		}
 	};
 
 	const onCreate = () => {
@@ -59,10 +80,7 @@ export default function MainSection() {
 								type="text"
 								id={`key${index}`}
 								value={text}
-								onChange={(e: ChangeEvent<HTMLInputElement>) => {
-									e.preventDefault();
-									return;
-								}}
+								onChange={handleNext}
 								onKeyDown={handleChange}
 								maxLength={1}
 							/>

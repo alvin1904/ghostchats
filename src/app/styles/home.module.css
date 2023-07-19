@@ -17,6 +17,7 @@
 	position: relative;
 	z-index: 1000;
 	gap: 2rem;
+	margin-bottom: 6rem;
 }
 .g1 {
 	position: absolute;
