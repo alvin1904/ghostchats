@@ -3,6 +3,15 @@
 import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
 import styles from './styles/home.module.css';
 import { acceptedChars } from '@/utils/types/code';
+import { montserratFont } from '@/utils/fonts';
+
+export const FontStyling = () => (
+	<style jsx global>{`
+		html {
+			font-family: ${montserratFont.style.fontFamily};
+		}
+	`}</style>
+);
 
 export default function Home() {
 	const [code, setCode] = useState<string[]>(['', '', '', '', '', '']);
@@ -43,11 +52,16 @@ export default function Home() {
 
 	return (
 		<main>
+			<FontStyling />
 			<h1>Welcome to GhostChats</h1>
-			<input type="text" id="roomName" placeholder="Enter a name for your room!" />
+			<input
+				type="text"
+				id="roomName"
+				placeholder="Enter a name for your room!"
+			/>
 			<p>
-				Visit <button onClick={onCreate}>Create a dark room</button> to go to chat
-				page
+				Visit <button onClick={onCreate}>Create a dark room</button> to go to
+				chat page
 			</p>
 			<br />
 			<div className={styles.roomCode}>
@@ -69,8 +83,8 @@ export default function Home() {
 				})}
 			</div>
 			<p>
-				Visit <button onClick={handleJoin}>Join a dark room</button> to go to chat
-				page
+				Visit <button onClick={handleJoin}>Join a dark room</button> to go to
+				chat page
 			</p>
 			<br />
 		</main>

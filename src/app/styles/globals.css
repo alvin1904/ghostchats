@@ -92,66 +92,38 @@ textarea {
 	display: none;
 }
 
-*,
-:root {
-	font-family: 'Poppins', sans-serif;
-}
-
 ::-webkit-scrollbar {
 	width: 0;
 }
 
+:root {
+	--bg-pic: '';
+	--bg-default-color: '#000';
+	--bg-light: '';
+	--bg-accent: '';
+}
+
 .goblin_green {
-	background: rgb(27, 56, 49);
-	background-image: url('../../assets/bg/goblin_green.webp');
+	--bg-default-color: rgb(27, 56, 49);
+	--bg-pic: url('../../assets/bg/goblin_green.webp');
+	--bg-light: rgba(6, 134, 104, 0.4);
+	--bg-accent: #004233;
 }
 .midnight_shadow {
-	background: rgb(34, 34, 34);
-	background-image: url('../../assets/bg/midnight_shadow.webp');
+	--bg-default-color: rgb(34, 34, 34);
+	--bg-pic: url('../../assets/bg/midnight_shadow.webp');
+	--bg-light: rgba(54, 54, 54, 0.6);
+	--bg-accent: #363636;
 }
 .phantom_blue {
-	background: rgb(32, 117, 163);
-	background-image: url('../../assets/bg/phantom_blue.webp');
+	--bg-default-color: rgb(32, 117, 163);
+	--bg-pic: url('../../assets/bg/phantom_blue.webp');
+	--bg-light: rgba(104, 176, 216, 0.3);
+	--bg-accent: #68b0d8;
 }
 .mystic_violet {
-	background: rgb(116, 43, 140);
-	background-image: url('../../assets/bg/mystic_violet.webp');
-}
-.goblin_green .chat {
-	background: rgba(37, 75, 66, 0.6);
-}
-.midnight_shadow .chat {
-	background: rgba(54, 54, 54, 0.6);
-}
-.phantom_blue .chat {
-	background: rgba(104, 176, 216, 0.6);
-}
-.mystic_violet .chat {
-	background: rgba(167, 112, 186, 0.6);
-}
-.goblin_green .cHeader {
-	background: #254b42;
-}
-.midnight_shadow .cHeader {
-	background: #363636;
-}
-.phantom_blue .cHeader {
-	background: #68b0d8;
-}
-.mystic_violet .cHeader {
-	background: #8e42ab;
-}
-@media (max-width: 768px) {
-	.goblin_green .cSettings {
-		background: #254b42;
-	}
-	.midnight_shadow .cSettings {
-		background: #363636;
-	}
-	.phantom_blue .cSettings {
-		background: #68b0d8;
-	}
-	.mystic_violet .cSettings {
-		background: #8e42ab;
-	}
+	--bg-default-color: rgb(116, 43, 140);
+	--bg-pic: url('../../assets/bg/mystic_violet.webp');
+	--bg-light: rgba(185, 117, 208, 0.5);
+	--bg-accent: #8e42ab;
 }

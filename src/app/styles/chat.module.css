@@ -2,7 +2,7 @@
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
-	background-color: black;
+	background: var(--bg-pic) var(--bg-default-color);
 	color: white;
 	background-size: cover;
 	display: flex;
@@ -13,8 +13,9 @@
 }
 .chat {
 	width: 85%;
-	height: 85%;
+	height: 88%;
 	border-radius: 10px;
+	background-color: var(--bg-light);
 	backdrop-filter: blur(7.5px);
 	box-shadow: 0px 0px 40px 5px rgba(0, 0, 0, 0.1);
 	display: grid;
@@ -29,7 +30,7 @@
 	top: 0;
 	height: 55px;
 	width: 100%;
-	background: white;
+	background: var(--bg-accent);
 	border-radius: 15px 15px 0px 0px;
 	display: flex;
 	justify-content: space-between;
@@ -49,7 +50,8 @@
 	border-left: 1px solid white;
 }
 .chat_settings > div > h1 {
-	font-size: 1.25rem;
+	font-size: 1.45rem;
+	margin-bottom: 5px;
 	display: grid;
 	grid-auto-flow: column;
 	justify-content: start;
@@ -57,8 +59,8 @@
 	gap: 10px;
 	cursor: pointer;
 }
-.chat_settings > div > p,
-.chat_settings > div > button {
+.chat_settings div p,
+.chat_settings div button {
 	margin-left: 1rem;
 }
 .content {
@@ -80,6 +82,11 @@
 .details p {
 	max-width: 290px;
 }
+.mems > p {
+	font-size: 1.15rem;
+	font-weight: 600;
+	margin: 3px 0px;
+}
 .link_code {
 	font-weight: 600;
 	font-size: 1.25rem;
@@ -98,6 +105,13 @@
 	height: 35px;
 	cursor: pointer;
 }
+.exit {
+	opacity: 0.75;
+	cursor: pointer;
+}
+.exit:hover {
+	opacity: 1;
+}
 @media (max-width: 768px) {
 	.chat {
 		width: 92%;
@@ -107,9 +121,10 @@
 	}
 	.chat_settings {
 		position: absolute;
+		background-color: var(--bg-accent);
 		height: 50px;
 		width: 100%;
-		top: 60px;
+		top: 55px;
 		padding: 0.5rem 1rem;
 		grid-auto-flow: column;
 		grid-template-rows: none;
@@ -131,7 +146,7 @@
 	.details {
 		position: absolute;
 		left: 1rem;
-		top: 3rem;
+		top: 3.5rem;
 		padding: 0 0.5rem;
 		opacity: 0;
 	}
@@ -148,6 +163,12 @@
 	.participants .details {
 		padding-bottom: 1rem;
 		margin-bottom: 1rem;
+	}
+	.arrow{
+		transition: all 0.5s ease;
+	}
+	.open .arrow {
+		transform: rotate(180deg);
 	}
 }
 
