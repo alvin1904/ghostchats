@@ -122,9 +122,9 @@
 	.chat_settings {
 		position: absolute;
 		background-color: var(--bg-accent);
-		height: 50px;
+		height: 42px;
 		width: 100%;
-		top: 55px;
+		top: 47px;
 		padding: 0.5rem 1rem;
 		grid-auto-flow: column;
 		grid-template-rows: none;

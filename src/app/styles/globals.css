@@ -107,19 +107,19 @@ textarea {
 	--bg-default-color: rgb(27, 56, 49);
 	--bg-pic: url('../../assets/bg/goblin_green.webp');
 	--bg-light: rgba(6, 134, 104, 0.4);
-	--bg-accent: #004233;
+	--bg-accent: #065542;
 }
 .midnight_shadow {
 	--bg-default-color: rgb(34, 34, 34);
 	--bg-pic: url('../../assets/bg/midnight_shadow.webp');
 	--bg-light: rgba(54, 54, 54, 0.6);
-	--bg-accent: #363636;
+	--bg-accent: #3f3f3f;
 }
 .phantom_blue {
 	--bg-default-color: rgb(32, 117, 163);
 	--bg-pic: url('../../assets/bg/phantom_blue.webp');
 	--bg-light: rgba(104, 176, 216, 0.3);
-	--bg-accent: #68b0d8;
+	--bg-accent: #2692cd;
 }
 .mystic_violet {
 	--bg-default-color: rgb(116, 43, 140);

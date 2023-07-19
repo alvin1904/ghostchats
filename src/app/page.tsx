@@ -1,7 +1,7 @@
 'use client';
 
 import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
-import styles from './styles/home.module.css';
+import styles from '@/app/styles/home.module.css';
 import { acceptedChars } from '@/utils/types/code';
 import { montserratFont } from '@/utils/fonts';
 

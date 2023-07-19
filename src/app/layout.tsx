@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import './styles/globals.css';
+import '@/app/styles/globals.css';
 import type { Metadata } from 'next';
 import { ChatProvider } from '@/context/chatContext';
 

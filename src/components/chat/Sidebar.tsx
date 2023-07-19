@@ -23,7 +23,7 @@ type viewsType = 'code' | 'members';
 export default function ChatSidebar() {
 	const [view, setView] = useState<viewsType>('code');
 	const [copyText, setCopyText] = useState<string>('Copy invitation code');
-	const [open, setOpen] = useState<string>('open');
+	const [open, setOpen] = useState<string>('');
 	let code = '123456';
 	const handleCopy = () => {
 		setCopyText('Copied!');

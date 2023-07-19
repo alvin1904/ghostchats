@@ -5,9 +5,10 @@ import { FontStyling } from '@/app/page';
 import ChatNav from '@/components/chat/Nav';
 import ChatSidebar from '@/components/chat/Sidebar';
 import ChatScreen from '@/components/chat/Chat';
+import { themes } from '@/constants/constants';
 
 export default function page() {
-	let theme = 'goblin_green';
+	let theme = themes.black;
 	return (
 		<main className={styles.background + ` ${theme}`}>
 			<FontStyling />
