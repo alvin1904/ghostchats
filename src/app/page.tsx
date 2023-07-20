@@ -7,17 +7,14 @@ import Header from '@/components/home/Header';
 import MainSection from '@/components/home/MainSection';
 import Copyright from '@/components/home/Copyright';
 
-export const FontStyling = () => (
-	<style jsx global>{`
-		html {
-			font-family: ${montserratFont.style.fontFamily};
-		}
-	`}</style>
-);
 export default function Home() {
 	return (
 		<main className={styles.main}>
-			<FontStyling />
+			<style jsx global>{`
+				html {
+					font-family: ${montserratFont.style.fontFamily};
+				}
+			`}</style>
 			<Gradients />
 			<section className={styles.section}>
 				<Header />
