@@ -1,7 +1,6 @@
-'use client';
-
 import styles from '@/app/styles/chat.module.css';
 import { bulletStyles } from '@/constants/constants';
+import { useChatContext } from '@/context/chatContext';
 import { createInvitation } from '@/utils/textGenerator';
 import { useState } from 'react';
 import { IoChevronDown, IoCopyOutline } from 'react-icons/io5';
@@ -24,7 +23,9 @@ export default function ChatSidebar() {
 	const [view, setView] = useState<viewsType>('code');
 	const [copyText, setCopyText] = useState<string>('Copy invitation code');
 	const [open, setOpen] = useState<string>('');
-	let code = '123456';
+
+	const { roomId } = useChatContext();
+	let code = roomId;
 	const handleCopy = () => {
 		setCopyText('Copied!');
 		navigator.clipboard.writeText(createInvitation(code));

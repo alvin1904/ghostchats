@@ -1,10 +1,16 @@
 import styles from '@/app/styles/mainSection.module.css';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { acceptedChars } from '@/utils/types/code';
 import Popover from './Popover/Popover';
+import { useChatContext } from '@/context/chatContext';
+import { apiLinkGenerator } from '@/utils/linkGenerator';
 
 export default function MainSection() {
+	const nameRef = useRef<HTMLInputElement>(null);
 	const [code, setCode] = useState<string[]>(['', '', '', '', '', '']);
+	const [showPopover, setShowPopover] = useState<boolean>(false);
+
+	const { setRoomName, setRoomId } = useChatContext();
 
 	const handleChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		// FOR DESKTOP
@@ -53,8 +59,22 @@ export default function MainSection() {
 		}
 	};
 
-	const onCreate = () => {
-		console.log('create');
+	const onCreate = async () => {
+		const name = nameRef.current?.value;
+		if (!name) return alert('Enter a room name!');
+		setRoomName(name);
+		try {
+			const res = await fetch(apiLinkGenerator('room-ids'));
+			if (res.status !== 200) throw new Error('Something went wrong');
+			const data = await res.json();
+			const id = data?.data?.roomId;
+			if (!id) throw new Error('Server is down!');
+			setRoomId(id.toString());
+			setShowPopover(true);
+		} catch (err) {
+			console.log(err);
+			alert('Something went wrong');
+		}
 	};
 	const checkCode = () => {
 		for (let c in code) {
@@ -67,7 +87,9 @@ export default function MainSection() {
 	};
 	const handleJoin = () => {
 		if (!checkCode()) return alert('Check the code and try again!');
-		console.log('join');
+		const roomCode = code.join('');
+		setRoomId(roomCode);
+		setShowPopover(true);
 	};
 	return (
 		<div className={styles.section}>
@@ -77,6 +99,7 @@ export default function MainSection() {
 					className={styles.roomName}
 					id="roomName"
 					placeholder="Enter a room name!"
+					ref={nameRef}
 				/>
 				<button onClick={onCreate}>Create a dark room</button>
 			</div>
@@ -98,7 +121,7 @@ export default function MainSection() {
 					})}
 				</div>
 				<button onClick={handleJoin}>Join dark room</button>
-				<Popover />
+				<Popover showPopover={showPopover} />
 			</div>
 		</div>
 	);

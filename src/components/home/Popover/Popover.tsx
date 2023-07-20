@@ -1,7 +1,13 @@
 import styles from '@/app/styles/popover.module.css';
 import Theme from './Theme';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { themes } from '@/constants/constants';
+import { useChatContext } from '@/context/chatContext';
+import { useRouter } from 'next/navigation';
+
+type Props = {
+	showPopover: boolean;
+};
 
 function convertToTitleCase(inputString: string) {
 	let words = inputString.split('_');
@@ -12,18 +18,31 @@ function convertToTitleCase(inputString: string) {
 	return titleCaseString;
 }
 
-export default function Popover() {
+export default function Popover(props: Props) {
+	const nameRef = useRef<HTMLInputElement>(null);
 	const allThemes: string[] = Object.values(themes);
 	const [selected, setSelected] = useState<number>(0);
+	const { setName, setTheme } = useChatContext();
+	const router = useRouter();
+	const getTheme = () => allThemes[selected];
 	const onGoToRoom = () => {
-		console.log('Go to room');
+		const name = nameRef.current?.value;
+		if (!name) return alert('Please enter your name');
+		setName(name);
+		setTheme(getTheme());
+		router.push('/chat');
 	};
 	return (
-		<div className={styles.popover}>
+		<div
+			className={`${styles.popover} ${
+				props.showPopover ? styles.showP : styles.hideP
+			}`}
+		>
 			<input
 				type="text"
 				placeholder="Enter your name"
 				className={styles.input}
+				ref={nameRef}
 			/>
 			<div className={styles.theme}>
 				<h3>Chose a theme for your room</h3>

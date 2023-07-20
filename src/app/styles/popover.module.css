@@ -1,10 +1,10 @@
 .popover {
 	background-color: white;
 	color: black;
-	height: 400px;
+	height: 420px;
 	width: 500px;
 	position: absolute;
-	bottom: 25%;
+	bottom: 1%;
 	border-radius: 15px;
 	overflow: hidden;
 	display: grid;
@@ -70,4 +70,27 @@
 	background-color: white;
 	color: black;
 	border: 2px solid black;
+}
+.showP {
+	display: grid;
+	animation: showAnimation 0.3s ease-in-out;
+}
+.hideP {
+	display: none;
+}
+@media (max-width: 768px) {
+	.popover {
+		width: 360px;
+		height: 380px;
+	}
+}
+@keyframes showAnimation {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
 }
