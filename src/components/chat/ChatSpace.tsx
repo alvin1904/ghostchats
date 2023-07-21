@@ -2,35 +2,13 @@ import styles from '@/app/styles/chatscren.module.css';
 import { useChatContext } from '@/context/chatContext';
 
 export default function ChatSpace() {
-	const { name } = useChatContext();
-	const myName = name;
-
-	type MessageProps = {
-		username: string;
-		message: string;
-		status?: string;
-	};
-	const messages: MessageProps[] = [
-		{
-			username: 'Gokul',
-			message: 'hi'
-		},
-		{
-			username: 'Sreerag',
-			message: 'hi'
-		}
-	];
+	const { name, messages } = useChatContext();
 	return (
 		<div className={styles.messagespace}>
 			<div className={styles.messages}>
-				{messages.reverse().map((message, index) => {
-					if (message.status)
-						return (
-							<div key={index} className={styles.status}>
-								{message.message}
-							</div>
-						);
-					else if (message.username === myName)
+				{messages.map((message, index) => {
+					if (!message) return <></>;
+					else if (message.username === name)
 						return (
 							<div key={index} className={styles.mymessage}>
 								<div>

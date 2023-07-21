@@ -17,11 +17,14 @@ export default function Chat() {
 	const { roomName } = useChatContext();
 	const { roomId, closeSession } = useChatContext();
 	const myRoomId = roomId;
+	// CHECKING IF ROOM ID EXISTS
 	if (!myRoomId || roomId === '') {
 		if (typeof window !== 'undefined') router.push('/');
 		closeSession();
 		console.error("Room ID doesn't exist");
-	} else
+		return null;
+	} else {
+		// IF IT EXISTS
 		return (
 			<main className={styles.background + ` ${theme || themes.black}`}>
 				<style jsx global>{`
@@ -39,4 +42,5 @@ export default function Chat() {
 				</section>
 			</main>
 		);
+	}
 }

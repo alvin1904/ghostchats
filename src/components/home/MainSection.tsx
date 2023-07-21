@@ -84,8 +84,6 @@ export default function MainSection() {
 	const checkCode = () => {
 		for (let c in code) {
 			let ch = code[c];
-			console.log(ch);
-			console.log(!acceptedChars.includes(ch));
 			if (ch === '' || !acceptedChars.includes(ch)) return false;
 		}
 		return true;

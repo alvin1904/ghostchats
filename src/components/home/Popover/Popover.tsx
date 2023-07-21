@@ -27,7 +27,8 @@ export default function Popover(props: Props) {
 	const { setName, setTheme } = useChatContext();
 	const router = useRouter();
 	const getTheme = () => allThemes[selected];
-	const onGoToRoom = () => {
+	const onGoToRoom = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		const name = nameRef.current?.value;
 		if (!name) return alert('Please enter your name');
 		setLoading(true);
@@ -37,10 +38,11 @@ export default function Popover(props: Props) {
 		setLoading(false);
 	};
 	return (
-		<div
+		<form
 			className={`${styles.popover} ${
 				props.showPopover ? styles.showP : styles.hideP
 			}`}
+			onSubmit={onGoToRoom}
 		>
 			<input
 				type="text"
@@ -66,9 +68,9 @@ export default function Popover(props: Props) {
 					})}
 				</ul>
 			</div>
-			<button className={styles.button} onClick={onGoToRoom}>
+			<button type="submit" className={styles.button}>
 				{loading ? <Loading color="white" /> : 'Go to dark room'}
 			</button>
-		</div>
+		</form>
 	);
 }

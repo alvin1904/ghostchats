@@ -28,6 +28,8 @@
 	padding-right: 50px;
 }
 .icon {
+	outline: none;
+	border: none;
 	position: absolute;
 	color: var(--bg-accent);
 	opacity: 0.75;
