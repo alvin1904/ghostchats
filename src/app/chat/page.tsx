@@ -12,16 +12,15 @@ import { montserratFont } from '@/utils/fonts';
 import { useRouter } from 'next/navigation';
 
 export default function Chat() {
+	const router = useRouter();
 	const { theme } = useChatContext();
 	const { roomName } = useChatContext();
 	const { roomId, closeSession } = useChatContext();
 	const myRoomId = roomId;
-	const router = useRouter();
 	if (!myRoomId || roomId === '') {
+		if (typeof window !== 'undefined') router.push('/');
 		closeSession();
-		router.push('/');
 		console.error("Room ID doesn't exist");
-		return <></>;
 	} else
 		return (
 			<main className={styles.background + ` ${theme || themes.black}`}>

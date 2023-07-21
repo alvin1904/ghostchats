@@ -102,6 +102,11 @@ textarea {
 	--bg-light: '';
 	--bg-accent: '';
 }
+body {
+	min-height: 100vh;
+	min-width: 100vw;
+	background-color: #0f001e;
+}
 
 .goblin_green {
 	--bg-default-color: rgb(27, 56, 49);

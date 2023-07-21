@@ -11,8 +11,9 @@ export default function ChatNav(props: PropsType) {
 	const router = useRouter();
 	const { closeSession } = useChatContext();
 	const onExit = () => {
+		if (typeof window !== 'undefined') router.push('/');
 		closeSession();
-		router.push('/');
+		console.error('Signed out');
 	};
 	return (
 		<nav className={styles.chat_header}>
