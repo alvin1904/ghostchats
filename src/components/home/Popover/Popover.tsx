@@ -1,6 +1,6 @@
 import styles from '@/app/styles/popover.module.css';
 import Theme from './Theme';
-import { useRef, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import { themes } from '@/constants/constants';
 import { useChatContext } from '@/context/chatContext';
 import { useRouter } from 'next/navigation';
@@ -37,6 +37,9 @@ export default function Popover(props: Props) {
 		router.push('/chat');
 		setLoading(false);
 	};
+	useEffect(() => {
+		if (props.showPopover) nameRef.current?.focus();
+	}, [props.showPopover]);
 	return (
 		<form
 			className={`${styles.popover} ${
@@ -49,6 +52,7 @@ export default function Popover(props: Props) {
 				placeholder="Enter your name"
 				className={styles.input}
 				ref={nameRef}
+				autoComplete="off"
 			/>
 			<div className={styles.theme}>
 				<h3>Chose a theme for your room</h3>

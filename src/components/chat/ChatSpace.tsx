@@ -7,7 +7,12 @@ export default function ChatSpace() {
 		<div className={styles.messagespace}>
 			<div className={styles.messages}>
 				{messages.map((message, index) => {
-					if (!message) return <></>;
+					if (message?.info)
+						return (
+							<div key={index} className={styles.status}>
+								{message.message}
+							</div>
+						);
 					else if (message.username === name)
 						return (
 							<div key={index} className={styles.mymessage}>

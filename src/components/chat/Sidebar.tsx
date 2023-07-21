@@ -24,7 +24,7 @@ export default function ChatSidebar() {
 	const [copyText, setCopyText] = useState<string>('Copy invitation code');
 	const [open, setOpen] = useState<string>('');
 
-	const { roomId } = useChatContext();
+	const { roomId, members } = useChatContext();
 	let code = roomId;
 	const handleCopy = () => {
 		setCopyText('Copied!');
@@ -86,22 +86,14 @@ export default function ChatSidebar() {
 						view === 'members' ? styles.show : styles.hide
 					}`}
 				>
-					<p>
-						<Bullet color="red" />
-						Name
-					</p>
-					<p>
-						<Bullet color="green" />
-						Name
-					</p>
-					<p>
-						<Bullet color="red" />
-						Name
-					</p>
-					<p>
-						<Bullet color="green" />
-						Name
-					</p>
+					{members.map((member, index) => {
+						return (
+							<p key={index}>
+								<Bullet color="green" />
+								{member}
+							</p>
+						);
+					})}
 				</div>
 			</div>
 		</div>

@@ -105,6 +105,7 @@ export default function MainSection() {
 					id="roomName"
 					placeholder="Enter a room name!"
 					ref={nameRef}
+					autoComplete="off"
 				/>
 				<button onClick={onCreate}>
 					{loading1 ? <Loading /> : 'Create a dark room'}
@@ -123,6 +124,7 @@ export default function MainSection() {
 								onChange={handleNext}
 								onKeyDown={handleChange}
 								maxLength={1}
+								autoComplete="off"
 							/>
 						);
 					})}
