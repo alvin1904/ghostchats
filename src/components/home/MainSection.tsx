@@ -4,11 +4,14 @@ import { acceptedChars } from '@/utils/types/code';
 import Popover from './Popover/Popover';
 import { useChatContext } from '@/context/chatContext';
 import { apiLinkGenerator } from '@/utils/linkGenerator';
+import Loading from '../Loading';
 
 export default function MainSection() {
 	const nameRef = useRef<HTMLInputElement>(null);
 	const [code, setCode] = useState<string[]>(['', '', '', '', '', '']);
 	const [showPopover, setShowPopover] = useState<boolean>(false);
+	const [loading1, setLoading1] = useState<boolean>(false);
+	const [loading2, setLoading2] = useState<boolean>(false);
 
 	const { setRoomName, setRoomId } = useChatContext();
 
@@ -62,6 +65,7 @@ export default function MainSection() {
 	const onCreate = async () => {
 		const name = nameRef.current?.value;
 		if (!name) return alert('Enter a room name!');
+		setLoading1(true);
 		setRoomName(name);
 		try {
 			const res = await fetch(apiLinkGenerator('room-ids'));
@@ -75,6 +79,7 @@ export default function MainSection() {
 			console.log(err);
 			alert('Something went wrong');
 		}
+		setLoading1(false);
 	};
 	const checkCode = () => {
 		for (let c in code) {
@@ -87,9 +92,11 @@ export default function MainSection() {
 	};
 	const handleJoin = () => {
 		if (!checkCode()) return alert('Check the code and try again!');
+		setLoading2(true);
 		const roomCode = code.join('');
 		setRoomId(roomCode);
 		setShowPopover(true);
+		setLoading2(false);
 	};
 	return (
 		<div className={styles.section}>
@@ -101,7 +108,9 @@ export default function MainSection() {
 					placeholder="Enter a room name!"
 					ref={nameRef}
 				/>
-				<button onClick={onCreate}>Create a dark room</button>
+				<button onClick={onCreate}>
+					{loading1 ? <Loading /> : 'Create a dark room'}
+				</button>
 			</div>
 			<div>OR</div>
 			<div className={styles.subsec}>
@@ -120,7 +129,9 @@ export default function MainSection() {
 						);
 					})}
 				</div>
-				<button onClick={handleJoin}>Join dark room</button>
+				<button onClick={handleJoin}>
+					{loading2 ? <Loading /> : 'Join dark room'}
+				</button>
 				<Popover showPopover={showPopover} />
 			</div>
 		</div>

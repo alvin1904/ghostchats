@@ -1,4 +1,5 @@
 import styles from '@/app/styles/chat.module.css';
+import { useChatContext } from '@/context/chatContext';
 import { useRouter } from 'next/navigation';
 import { IoExit } from 'react-icons/io5';
 
@@ -8,7 +9,12 @@ type PropsType = {
 
 export default function ChatNav(props: PropsType) {
 	const router = useRouter();
+	const { setTheme, setRoomId, setRoomName, setName } = useChatContext();
 	const onExit = () => {
+		setName('');
+		setRoomName('');
+		setRoomId('');
+		setTheme('');
 		router.push('/');
 	};
 	return (

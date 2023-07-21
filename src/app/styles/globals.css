@@ -127,3 +127,29 @@ textarea {
 	--bg-light: rgba(185, 117, 208, 0.5);
 	--bg-accent: #8e42ab;
 }
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	transform: translateY(15%);
+	width: 100%;
+	height: 100%;
+	gap: 5px;
+}
+.loader {
+	display: flex;
+	z-index: 9999;
+	background: transparent;
+	border: 2px solid transparent;
+	border-right: 2px solid black;
+	border-radius: 50%;
+	animation: loader 1s linear infinite;
+}
+@keyframes loader {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

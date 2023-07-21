@@ -1,12 +1,14 @@
 import styles from '@/app/styles/chatscren.module.css';
+import { useChatContext } from '@/context/chatContext';
 
 export default function ChatSpace() {
+	const { name } = useChatContext();
+	let myName = name;
 	type MessageProps = {
 		username: string;
 		message: string;
 		status?: string;
 	};
-	let myName = 'Alvin';
 	const messages: MessageProps[] = [
 		{
 			username: 'Gokul',
