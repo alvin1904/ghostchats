@@ -67,9 +67,7 @@
 	transition: all 0.3s ease-in-out;
 }
 .button:hover {
-	background-color: white;
-	color: black;
-	border: 2px solid black;
+	opacity: 0.8;
 }
 .showP {
 	display: grid;

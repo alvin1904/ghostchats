@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { themes } from '@/constants/constants';
 import { useChatContext } from '@/context/chatContext';
 import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
 
 type Props = {
 	showPopover: boolean;
@@ -22,15 +23,18 @@ export default function Popover(props: Props) {
 	const nameRef = useRef<HTMLInputElement>(null);
 	const allThemes: string[] = Object.values(themes);
 	const [selected, setSelected] = useState<number>(0);
+	const [loading, setLoading] = useState<boolean>(false);
 	const { setName, setTheme } = useChatContext();
 	const router = useRouter();
 	const getTheme = () => allThemes[selected];
 	const onGoToRoom = () => {
 		const name = nameRef.current?.value;
 		if (!name) return alert('Please enter your name');
+		setLoading(true);
 		setName(name);
 		setTheme(getTheme());
 		router.push('/chat');
+		setLoading(false);
 	};
 	return (
 		<div
@@ -62,12 +66,9 @@ export default function Popover(props: Props) {
 					})}
 				</ul>
 			</div>
-			<input
-				type="button"
-				className={styles.button}
-				onClick={onGoToRoom}
-				value={'Go to dark room'}
-			/>
+			<button className={styles.button} onClick={onGoToRoom}>
+				{loading ? <Loading color="white" /> : 'Go to dark room'}
+			</button>
 		</div>
 	);
 }

@@ -10,6 +10,7 @@ type chatContextType = {
 	setName: (name: string) => void;
 	roomName: string;
 	setRoomName: (roomName: string) => void;
+	closeSession: () => void;
 };
 
 const ChatContext = createContext<chatContextType>({
@@ -20,7 +21,8 @@ const ChatContext = createContext<chatContextType>({
 	name: '',
 	setName: () => {},
 	roomName: '',
-	setRoomName: () => {}
+	setRoomName: () => {},
+	closeSession: () => {}
 });
 
 export function ChatProvider({ children }: { children: ReactNode }) {
@@ -28,6 +30,13 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 	const [roomId, setRoomId] = useState<string>('');
 	const [name, setName] = useState<string>('');
 	const [roomName, setRoomName] = useState<string>('');
+	const closeSession = () => {
+		setRoomId('');
+		setName('');
+		setRoomName('');
+		setTheme('');
+		console.log('Session closed');
+	};
 	return (
 		<ChatContext.Provider
 			value={{
@@ -38,7 +47,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 				name,
 				setName,
 				roomName,
-				setRoomName
+				setRoomName,
+				closeSession
 			}}
 		>
 			{children}

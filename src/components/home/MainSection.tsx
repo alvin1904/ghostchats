@@ -132,8 +132,8 @@ export default function MainSection() {
 				<button onClick={handleJoin}>
 					{loading2 ? <Loading /> : 'Join dark room'}
 				</button>
-				<Popover showPopover={showPopover} />
 			</div>
+			<Popover showPopover={showPopover} />
 		</div>
 	);
 }

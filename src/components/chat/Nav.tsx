@@ -9,12 +9,9 @@ type PropsType = {
 
 export default function ChatNav(props: PropsType) {
 	const router = useRouter();
-	const { setTheme, setRoomId, setRoomName, setName } = useChatContext();
+	const { closeSession } = useChatContext();
 	const onExit = () => {
-		setName('');
-		setRoomName('');
-		setRoomId('');
-		setTheme('');
+		closeSession();
 		router.push('/');
 	};
 	return (

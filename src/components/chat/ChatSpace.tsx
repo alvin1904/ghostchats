@@ -3,7 +3,8 @@ import { useChatContext } from '@/context/chatContext';
 
 export default function ChatSpace() {
 	const { name } = useChatContext();
-	let myName = name;
+	const myName = name;
+
 	type MessageProps = {
 		username: string;
 		message: string;
