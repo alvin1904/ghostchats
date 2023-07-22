@@ -1,4 +1,5 @@
 'use client';
+import { getTime } from '@/utils/textGenerator';
 import {
 	ReactNode,
 	createContext,
@@ -8,7 +9,12 @@ import {
 } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-type MessageType = { username: string; message: string; info?: boolean };
+type MessageType = {
+	username: string;
+	message: string;
+	info?: boolean;
+	time?: string;
+};
 
 type chatContextType = {
 	theme: string;
@@ -83,10 +89,24 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 
 	const sendMessage = (message: string) => {
 		if (!joined) return;
-		const messageObject: MessageType = { username: name, message: message };
+		const messageObject: MessageType = {
+			username: name,
+			message: message,
+			time: getTime()
+		};
 		setMessages((messages) => [messageObject, ...messages]);
 		socket?.emit('send_chat', messageObject);
 		console.log('message send');
+	};
+
+	const sendStatus = (status: string) => {
+		let mess = {
+			username: 'ghostchats',
+			message: status,
+			info: true
+		};
+		console.log(mess);
+		setMessages((messages) => [mess, ...messages]);
 	};
 
 	useEffect(() => {
@@ -105,14 +125,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 	useEffect(() => {
 		if (!socket) return;
 		socket?.on('user_joined', (data) => {
-			let mess = {
-				username: data,
-				message: `${data} joined the room`,
-				info: true
-			};
+			sendStatus(`${data} joined the room`);
 			members.push(data);
-			console.log(mess);
-			setMessages((messages) => [mess, ...messages]);
 		});
 		return () => {
 			socket?.off('user_joined');
@@ -122,14 +136,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 	useEffect(() => {
 		if (!socket) return;
 		socket?.on('user_left', (data) => {
-			let mess = {
-				username: data,
-				message: `${data} left the room`,
-				info: true
-			};
-			console.log(mess);
+			sendStatus(`${data} left the room`);
 			members.splice(members.indexOf(data), 1);
-			setMessages((messages) => [mess, ...messages]);
 		});
 		return () => {
 			socket?.off('user_left');

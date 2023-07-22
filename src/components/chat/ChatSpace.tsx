@@ -17,10 +17,9 @@ export default function ChatSpace() {
 						return (
 							<div key={index} className={styles.mymessage}>
 								<div>
-									<div className={styles.username}>You</div>
 									<div className={styles.body}>{message.message}</div>
 								</div>
-								<div className={styles.time}>7:43 PM</div>
+								<div className={styles.time}>{message?.time}</div>
 							</div>
 						);
 					else
@@ -30,7 +29,7 @@ export default function ChatSpace() {
 									<div className={styles.username}>{message.username}</div>
 									<div className={styles.body}>{message.message}</div>
 								</div>
-								<div className={styles.time}>12:49 PM</div>
+								<div className={styles.time}>{message?.time}</div>
 							</div>
 						);
 				})}

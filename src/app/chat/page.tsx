@@ -18,12 +18,12 @@ export default function Chat() {
 	const { roomId, closeSession } = useChatContext();
 	const myRoomId = roomId;
 	// CHECKING IF ROOM ID EXISTS
-	if (!myRoomId || roomId === '') {
-		if (typeof window !== 'undefined') router.push('/');
-		closeSession();
-		console.error("Room ID doesn't exist");
-		return null;
-	} else {
+	// if (!myRoomId || roomId === '') {
+	// 	if (typeof window !== 'undefined') router.push('/');
+	// 	closeSession();
+	// 	console.error("Room ID doesn't exist");
+	// 	return null;
+	// } else {
 		// IF IT EXISTS
 		return (
 			<main className={styles.background + ` ${theme || themes.black}`}>
@@ -43,4 +43,4 @@ export default function Chat() {
 			</main>
 		);
 	}
-}
+// }

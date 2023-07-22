@@ -86,25 +86,32 @@
 .mymessage {
 	border-radius: 15px;
 	box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
-	min-height: 50px;
-	max-width: 300px;
+	max-width: 330px;
 	color: black;
 	display: grid;
 	grid-auto-flow: column;
-	grid-template-columns: 1fr 60px;
+	grid-template-columns: 1fr 55px;
 	padding: 5px 15px;
 	padding-right: 5px;
-	gap: 2px;
 }
 .message {
+	min-height: 50px;
 	background-color: #fff;
 	border-radius: 15px 15px 15px 0px;
+	align-self: start;
+	gap: 15px;
 }
 .mymessage {
+	min-height: 40px;
 	background-color: var(--bg-accent);
 	border-radius: 15px 15px 0px 15px;
 	color: white;
 	align-self: end;
+	gap: 0px;
+}
+.mymessage > div {
+	display: flex;
+	align-items: center;
 }
 .username {
 	color: #000;
@@ -133,8 +140,8 @@
 }
 .time {
 	text-align: center;
-	place-self: center;
-	font-size: 0.8rem;
+	place-self: end;
+	font-size: 0.65rem;
 }
 
 @media (min-width: 768px) {
@@ -143,8 +150,8 @@
 		height: 85%;
 		padding-top: 20px;
 	}
-	.messages{
-		gap: 6px
+	.messages {
+		gap: 6px;
 	}
 	.message,
 	.mymessage {
@@ -157,7 +164,7 @@
 		font-size: 1.2rem;
 		margin-top: 6px;
 	}
-	.status{
+	.status {
 		font-size: 0.9rem;
 	}
 }
