@@ -137,7 +137,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 		if (!socket) return;
 		socket?.on('user_left', (data) => {
 			sendStatus(`${data} left the room`);
-			members.splice(members.indexOf(data), 1);
+			if (members.includes(data)) members.splice(members.indexOf(data), 1);
 		});
 		return () => {
 			socket?.off('user_left');

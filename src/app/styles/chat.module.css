@@ -24,9 +24,11 @@
 	grid-auto-flow: column;
 	grid-template-columns: 3fr 1fr;
 	padding-top: 70px;
+	overflow: hidden;
 }
 .chat_header {
 	position: absolute;
+	z-index: 100;
 	top: 0;
 	height: 55px;
 	width: 100%;
@@ -164,7 +166,7 @@
 		padding-bottom: 1rem;
 		margin-bottom: 1rem;
 	}
-	.arrow{
+	.arrow {
 		transition: all 0.5s ease;
 	}
 	.open .arrow {

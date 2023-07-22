@@ -15,6 +15,23 @@ export default function MainSection() {
 
 	const { setRoomName, setRoomId } = useChatContext();
 
+	const checkCode = () => {
+		for (let c in code) {
+			let ch = code[c];
+			if (ch === '' || !acceptedChars.includes(ch)) return false;
+		}
+		return true;
+	};
+
+	const joinRoom = async () => {
+		if (!checkCode()) return alert('Check the code and try again!');
+		setLoading2(true);
+		const roomCode = code.join('');
+		setRoomId(roomCode);
+		setShowPopover(true);
+		setLoading2(false);
+	};
+
 	const handleChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		// FOR DESKTOP
 		const changeFocus = (value: string, id: number) => {
@@ -25,6 +42,7 @@ export default function MainSection() {
 		e.preventDefault();
 		// HANDLING INPUT
 		const value = e.key;
+		if (value === 'Enter') return joinRoom();
 		if (!acceptedChars.includes(value)) return;
 		const id = parseInt(e.currentTarget.id[e.currentTarget.id.length - 1]);
 		setCode((prevCode) => {
@@ -62,7 +80,8 @@ export default function MainSection() {
 		}
 	};
 
-	const onCreate = async () => {
+	const onCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		const name = nameRef.current?.value;
 		if (!name) return alert('Enter a room name!');
 		setLoading1(true);
@@ -81,24 +100,14 @@ export default function MainSection() {
 		}
 		setLoading1(false);
 	};
-	const checkCode = () => {
-		for (let c in code) {
-			let ch = code[c];
-			if (ch === '' || !acceptedChars.includes(ch)) return false;
-		}
-		return true;
-	};
-	const handleJoin = () => {
-		if (!checkCode()) return alert('Check the code and try again!');
-		setLoading2(true);
-		const roomCode = code.join('');
-		setRoomId(roomCode);
-		setShowPopover(true);
-		setLoading2(false);
+
+	const onJoin = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		joinRoom();
 	};
 	return (
 		<div className={styles.section}>
-			<div className={styles.subsec}>
+			<form className={styles.subsec} onSubmit={onCreate}>
 				<input
 					type="text"
 					className={styles.roomName}
@@ -107,12 +116,12 @@ export default function MainSection() {
 					ref={nameRef}
 					autoComplete="off"
 				/>
-				<button onClick={onCreate}>
+				<button type="submit">
 					{loading1 ? <Loading /> : 'Create a dark room'}
 				</button>
-			</div>
+			</form>
 			<div>OR</div>
-			<div className={styles.subsec}>
+			<form className={styles.subsec} onSubmit={onJoin}>
 				<div className={styles.roomCode}>
 					{code.map((text, index) => {
 						return (
@@ -129,10 +138,10 @@ export default function MainSection() {
 						);
 					})}
 				</div>
-				<button onClick={handleJoin}>
+				<button type="submit">
 					{loading2 ? <Loading /> : 'Join dark room'}
 				</button>
-			</div>
+			</form>
 			<Popover showPopover={showPopover} />
 		</div>
 	);
