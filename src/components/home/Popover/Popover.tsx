@@ -24,13 +24,13 @@ export default function Popover(props: Props) {
 	const allThemes: string[] = Object.values(themes);
 	const [selected, setSelected] = useState<number>(0);
 	const [loading, setLoading] = useState<boolean>(false);
-	const { setName, setTheme } = useChatContext();
+	const { setName, setTheme, showError } = useChatContext();
 	const router = useRouter();
 	const getTheme = () => allThemes[selected];
 	const onGoToRoom = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const name = nameRef.current?.value;
-		if (!name) return alert('Please enter your name');
+		if (!name) return showError('Please enter your name!');
 		setLoading(true);
 		setName(name);
 		setTheme(getTheme());

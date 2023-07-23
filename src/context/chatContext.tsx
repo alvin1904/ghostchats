@@ -1,5 +1,6 @@
 'use client';
-import { getTime } from '@/utils/textGenerator';
+import { getTime, id } from '@/utils/textGenerator';
+import { ErrorType, MessageType } from '@/utils/types/types';
 import {
 	ReactNode,
 	createContext,
@@ -8,13 +9,6 @@ import {
 	useState
 } from 'react';
 import { io, Socket } from 'socket.io-client';
-
-type MessageType = {
-	username: string;
-	message: string;
-	info?: boolean;
-	time?: string;
-};
 
 type chatContextType = {
 	theme: string;
@@ -29,6 +23,9 @@ type chatContextType = {
 	messages: MessageType[];
 	sendMessage: (message: string) => void;
 	members: string[];
+	errors: ErrorType[];
+	showError: (error: string) => void;
+	deleteError: (id: number) => void;
 };
 
 const ChatContext = createContext<chatContextType>({
@@ -43,7 +40,10 @@ const ChatContext = createContext<chatContextType>({
 	closeSession: () => {},
 	messages: [],
 	sendMessage: () => {},
-	members: []
+	members: [],
+	errors: [],
+	showError: () => {},
+	deleteError: () => {}
 });
 
 export function ChatProvider({ children }: { children: ReactNode }) {
@@ -67,6 +67,23 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 		setJoined(false);
 		console.log('Session closed');
 	};
+
+	const [errors, setErrors] = useState<ErrorType[]>([]);
+	const deleteError = (id: number) => {
+		if (!id) return;
+		const temp = errors.filter((error) => error.id !== id);
+		setErrors(temp);
+	};
+	const showError = (error: string = 'Something went wrong!') => {
+		const temp = id();
+		setErrors([...errors, { message: error, id: temp }]);
+		const timeOut = setTimeout(() => {
+			deleteError(temp);
+		}, 2000);
+		return () => clearTimeout(timeOut);
+	};
+
+	// INITIATE CONNECTION
 	useEffect(() => {
 		const connect = () => {
 			const server_addr = `${process.env.NEXT_PUBLIC_API_URL_WS}room-id=${roomId}&name=${name}`;
@@ -80,13 +97,18 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 	}, [joined, roomId, name]);
 
 	socket?.on('error', (error) => {
-		console.error(error);
+		if (typeof error === 'string') showError(error);
+		if (typeof error?.error === 'string') showError(error.error);
+		showError();
 	});
+	
 	socket?.on('connect_error', (error) => {
-		console.log('connect_error');
-		console.log(error);
+		showError(
+			'Error trying to connect, it might be a problem with our server!'
+		);
 	});
 
+	// SENDING, RECEIVING CHATS, STATUSES
 	const sendMessage = (message: string) => {
 		if (!joined) return;
 		const messageObject: MessageType = {
@@ -158,7 +180,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 				closeSession,
 				messages,
 				sendMessage,
-				members
+				members,
+				errors,
+				showError,
+				deleteError
 			}}
 		>
 			{children}

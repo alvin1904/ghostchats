@@ -13,7 +13,7 @@ export default function MainSection() {
 	const [loading1, setLoading1] = useState<boolean>(false);
 	const [loading2, setLoading2] = useState<boolean>(false);
 
-	const { setRoomName, setRoomId } = useChatContext();
+	const { setRoomName, setRoomId, showError } = useChatContext();
 
 	const checkCode = () => {
 		for (let c in code) {
@@ -24,7 +24,7 @@ export default function MainSection() {
 	};
 
 	const joinRoom = async () => {
-		if (!checkCode()) return alert('Check the code and try again!');
+		if (!checkCode()) return showError('Check the code and try again!');
 		setLoading2(true);
 		const roomCode = code.join('');
 		setRoomId(roomCode);
@@ -83,20 +83,23 @@ export default function MainSection() {
 	const onCreate = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const name = nameRef.current?.value;
-		if (!name) return alert('Enter a room name!');
+		if (!name) return showError('Enter a room name!');
 		setLoading1(true);
 		setRoomName(name);
 		try {
 			const res = await fetch(apiLinkGenerator('room-ids'));
-			if (res.status !== 200) throw new Error('Something went wrong');
+			if (res.status !== 200)
+				return showError(
+					'Something went wrong while creating the room! Try again later.'
+				);
 			const data = await res.json();
 			const id = data?.data?.roomId;
-			if (!id) throw new Error('Server is down!');
+			if (!id) return showError('Server is down!');
 			setRoomId(id.toString());
 			setShowPopover(true);
 		} catch (err) {
 			console.log(err);
-			alert('Something went wrong');
+			showError("Couldn't connect to the server!");
 		}
 		setLoading1(false);
 	};

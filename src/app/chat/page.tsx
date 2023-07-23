@@ -14,14 +14,14 @@ import { useRouter } from 'next/navigation';
 export default function Chat() {
 	const router = useRouter();
 	const { theme } = useChatContext();
-	const { roomName } = useChatContext();
+	const { roomName, showError } = useChatContext();
 	const { roomId, closeSession } = useChatContext();
 	const myRoomId = roomId;
 	// CHECKING IF ROOM ID EXISTS
 	if (!myRoomId || roomId === '') {
 		if (typeof window !== 'undefined') router.push('/');
 		closeSession();
-		console.error("Room ID doesn't exist");
+		showError("Room ID doesn't exist");
 		return null;
 	} else {
 		// IF IT EXISTS

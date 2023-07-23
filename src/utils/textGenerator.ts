@@ -15,3 +15,5 @@ export const getTime = () => {
 	hours = hours !== 0 ? hours : 12;
 	return `${hours}:${minutes} ${AmPm}`;
 };
+
+export const id = () => Number(Math.random().toString().substring(2, 7));

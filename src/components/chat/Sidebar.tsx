@@ -20,16 +20,18 @@ const Bullet = (prop: BulletProp) => (
 type viewsType = 'code' | 'members';
 
 export default function ChatSidebar() {
+	const def = 'Copy invitation code';
 	const [view, setView] = useState<viewsType>('code');
-	const [copyText, setCopyText] = useState<string>('Copy invitation code');
+	const [copyText, setCopyText] = useState<string>(def);
 	const [open, setOpen] = useState<string>('');
 
-	const { roomId, members } = useChatContext();
+	const { roomId, members, showError } = useChatContext();
 	let code = roomId;
 	const handleCopy = () => {
 		setCopyText('Copied!');
 		navigator.clipboard.writeText(createInvitation(code));
-		setTimeout(() => setCopyText('Copy invitation code'), 2000);
+		showError('Copied to clipboard!');
+		setTimeout(() => setCopyText(def), 2000);
 	};
 	const onSeeCode = () => {
 		if (copyText !== 'Copied') {
@@ -70,7 +72,7 @@ export default function ChatSidebar() {
 						<span className={styles.copyIcon}>
 							<IoCopyOutline />
 						</span>
-						{copyText}
+						{def}
 					</button>
 				</div>
 			</div>

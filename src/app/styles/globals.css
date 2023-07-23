@@ -157,3 +157,73 @@ body {
 		transform: rotate(360deg);
 	}
 }
+.error_block {
+	position: absolute;
+	bottom: 2rem;
+	right: 2rem;
+	display: flex;
+	height: 90vh;
+	width: 320px;
+	flex-direction: column-reverse;
+	gap: 0.65rem;
+	overflow-y: scroll;
+	z-index: 1001;
+}
+.error_handler {
+	z-index: 1001;
+	min-height: 45px;
+	width: 320px;
+	padding: 5px 10px;
+	background: linear-gradient(-35deg, #ffffff05, #ffffff33);
+	color: white;
+	backdrop-filter: blur(5px);
+	border: 1px solid #ffffff22;
+	border-radius: 5px;
+	box-shadow: 0 0 2px 0px #00000088;
+	display: flex;
+	justify-content: space-between;
+	text-align: left;
+	align-items: center;
+	opacity: 0;
+	user-select: none;
+}
+.show {
+	transition: all 0.2s ease-in-out;
+	animation: enterTheError 0.2s ease-in-out forwards;
+}
+.hide {
+	opacity: 0;
+}
+.error_msg {
+	flex-grow: 1;
+}
+.close {
+	flex-basis: 20px;
+	border-radius: 50%;
+	padding: 2px;
+	transition: all 0.1s ease-in-out;
+	cursor: pointer;
+}
+.close:hover {
+	background-color: #ffffff22;
+}
+@keyframes enterTheError {
+	from {
+		transform: translateX(-2rem);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0rem);
+		opacity: 1;
+	}
+}
+@media (max-width: 768px) {
+	.error_block {
+		bottom: 8%;
+		right: 4%;
+	}
+	.error_handler {
+		background-color: white;
+		color: black;
+	}
+}

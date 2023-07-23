@@ -2,6 +2,7 @@ import Head from 'next/head';
 import '@/app/styles/globals.css';
 import type { Metadata } from 'next';
 import { ChatProvider } from '@/context/chatContext';
+import ErrorHandler from '@/components/ErrorHandler';
 
 export const metadata: Metadata = {
 	title: 'Ghastchats',
@@ -22,7 +23,10 @@ export default function RootLayout({
 				<link rel="icon" href="./favicon.ico" />
 			</Head>
 			<body>
-				<ChatProvider>{children}</ChatProvider>
+				<ChatProvider>
+					<ErrorHandler />
+					{children}
+					</ChatProvider>
 			</body>
 		</html>
 	);

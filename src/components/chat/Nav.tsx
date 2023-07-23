@@ -9,11 +9,11 @@ type PropsType = {
 
 export default function ChatNav(props: PropsType) {
 	const router = useRouter();
-	const { closeSession } = useChatContext();
+	const { closeSession, showError } = useChatContext();
 	const onExit = () => {
 		if (typeof window !== 'undefined') router.push('/');
 		closeSession();
-		console.error('Signed out');
+		showError('Signed out');
 	};
 	return (
 		<nav className={styles.chat_header}>
