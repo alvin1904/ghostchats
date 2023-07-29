@@ -3,17 +3,17 @@ import { ChangeEvent, useRef, useState } from 'react';
 import { acceptedChars } from '@/utils/types/code';
 import Popover from './Popover/Popover';
 import { useChatContext } from '@/context/chatContext';
-import { apiLinkGenerator } from '@/utils/linkGenerator';
+// import { apiLinkGenerator } from '@/utils/linkGenerator';
 import Loading from '../Loading';
 
 export default function MainSection() {
 	const nameRef = useRef<HTMLInputElement>(null);
 	const [code, setCode] = useState<string[]>(['', '', '', '', '', '']);
 	const [showPopover, setShowPopover] = useState<boolean>(false);
-	const [loading1, setLoading1] = useState<boolean>(false);
+	// const [loading1, setLoading1] = useState<boolean>(false);
 	const [loading2, setLoading2] = useState<boolean>(false);
 
-	const { setRoomName, setRoomId, showError } = useChatContext();
+	const { setRoomId, showError } = useChatContext();
 
 	const checkCode = () => {
 		for (let c in code) {
@@ -80,29 +80,29 @@ export default function MainSection() {
 		}
 	};
 
-	const onCreate = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const name = nameRef.current?.value;
-		if (!name) return showError('Enter a room name!');
-		setLoading1(true);
-		setRoomName(name);
-		try {
-			const res = await fetch(apiLinkGenerator('room-ids'));
-			if (res.status !== 200)
-				return showError(
-					'Something went wrong while creating the room! Try again later.'
-				);
-			const data = await res.json();
-			const id = data?.data?.roomId;
-			if (!id) return showError('Server is down!');
-			setRoomId(id.toString());
-			setShowPopover(true);
-		} catch (err) {
-			console.log(err);
-			showError("Couldn't connect to the server!");
-		}
-		setLoading1(false);
-	};
+	// const onCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+	// 	e.preventDefault();
+	// 	const name = nameRef.current?.value;
+	// 	if (!name) return showError('Enter a room name!');
+	// 	setLoading1(true);
+	// 	setRoomName(name);
+	// 	try {
+	// 		const res = await fetch(apiLinkGenerator('room-ids'));
+	// 		if (res.status !== 200)
+	// 			return showError(
+	// 				'Something went wrong while creating the room! Try again later.'
+	// 			);
+	// 		const data = await res.json();
+	// 		const id = data?.data?.roomId;
+	// 		if (!id) return showError('Server is down!');
+	// 		setRoomId(id.toString());
+	// 		setShowPopover(true);
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 		showError("Couldn't connect to the server!");
+	// 	}
+	// 	setLoading1(false);
+	// };
 
 	const onJoin = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -110,27 +110,17 @@ export default function MainSection() {
 	};
 	return (
 		<div className={styles.section}>
-			<form className={styles.subsec} onSubmit={onCreate}>
-				<input
-					type="text"
-					className={styles.roomName}
-					id="roomName"
-					placeholder="Enter a room name!"
-					ref={nameRef}
-					autoComplete="off"
-				/>
-				<button type="submit">
-					{loading1 ? <Loading /> : 'Create a dark room'}
-				</button>
-			</form>
-			<div>OR</div>
 			<form className={styles.subsec} onSubmit={onJoin}>
+				<h2 className={styles.heading2}>
+					Enter a random code to create a room or one provided by friends to
+					join their room!
+				</h2>
 				<div className={styles.roomCode}>
 					{code.map((text, index) => {
 						return (
 							<input
 								key={index}
-								type="text"
+								type="number"
 								id={`key${index}`}
 								value={text}
 								onChange={handleNext}

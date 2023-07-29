@@ -1,24 +1,19 @@
 .section {
 	width: 340px;
-	height: 284px;
+	height: 300px;
 	border-radius: 15px;
 	backdrop-filter: blur(50px) saturate(150%);
 	-webkit-backdrop-filter: blur(50px) saturate(150%);
 	background-color: rgba(255, 255, 255, 0.08);
 	border: 1px solid rgba(209, 213, 219, 0.3);
 	display: grid;
-	grid-auto-flow: row;
-	grid-template-rows: 1fr auto 1fr;
-	padding: 20px;
-	gap: 5px;	
-	justify-items: center;
+	justify-content: center;
+	padding: 5px;
 }
 .subsec {
 	display: grid;
 	grid-auto-flow: row;
-	grid-template-rows: 1fr 1fr;
-	padding: 5px;
-	gap: 5px;
+	align-content: space-evenly;
 	justify-items: center;
 }
 .subsec button {
@@ -62,14 +57,26 @@
 	text-align: center;
 	font-size: 1.2rem;
 }
+.heading2 {
+	padding: 0;
+	font-size: 1.2rem;
+	color: white;
+	text-align: center;
+	text-wrap: balance;
+}
+
 @media (min-width: 768px) {
 	.section {
 		width: 500px;
-		height: 300px;
+		height: 330px;
 		gap: 5px;
 	}
 	.subsec button,
 	.subsec .roomName {
 		width: 350px;
 	}
+	.heading2{
+		padding: 10px 30px;
+	}
 }
+
