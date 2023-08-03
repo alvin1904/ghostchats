@@ -1,0 +1,38 @@
+name: Prettier write
+on:
+  workflow_dispatch:
+
+jobs:
+  write:
+    if: github.repository == 'alvin1904/ghostchats-client'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Prettier
+        run: npm install --global prettier
+
+      - name: Check if formatting is needed
+        id: check
+        run: echo "::set-output name=needed::$(prettier --check . || echo 'true')"
+
+      - name: Run Prettier
+        if: steps.check.outputs.needed == 'true'
+        run: prettier --write .
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "style: format code with prettier"
+          git push
