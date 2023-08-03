@@ -21,12 +21,7 @@ jobs:
       - name: Install Prettier
         run: npm install --global prettier
 
-      - name: Check if formatting is needed
-        id: check
-        run: echo "::set-output name=needed::$(prettier --check . || echo 'true')"
-
       - name: Run Prettier
-        if: steps.check.outputs.needed == 'true'
         run: prettier --write .
 
       - name: Commit and Push changes
