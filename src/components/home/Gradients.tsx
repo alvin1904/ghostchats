@@ -1,4 +1,4 @@
-import styles from '@/app/styles/home.module.css';
+import styles from "@/app/styles/home.module.css";
 
 export default function Gradients() {
 	return (

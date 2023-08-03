@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Error from './Error';
-import { useChatContext } from '@/context/chatContext';
+import Error from "./Error";
+import { useChatContext } from "@/context/chatContext";
 
 export default function ErrorHandler() {
 	const { errors } = useChatContext();

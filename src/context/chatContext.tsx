@@ -1,14 +1,14 @@
-'use client';
-import { getTime, id } from '@/utils/textGenerator';
-import { ErrorType, MessageType } from '@/utils/types/types';
+"use client";
+import { getTime, id } from "@/utils/textGenerator";
+import { ErrorType, MessageType } from "@/utils/types/types";
 import {
 	ReactNode,
 	createContext,
 	useContext,
 	useEffect,
-	useState
-} from 'react';
-import { io, Socket } from 'socket.io-client';
+	useState,
+} from "react";
+import { io, Socket } from "socket.io-client";
 
 type chatContextType = {
 	theme: string;
@@ -29,13 +29,13 @@ type chatContextType = {
 };
 
 const ChatContext = createContext<chatContextType>({
-	theme: 'midnight_shadow',
+	theme: "midnight_shadow",
 	setTheme: () => {},
-	roomId: '',
+	roomId: "",
 	setRoomId: () => {},
-	name: '',
+	name: "",
 	setName: () => {},
-	roomName: '',
+	roomName: "",
 	setRoomName: () => {},
 	closeSession: () => {},
 	messages: [],
@@ -43,29 +43,29 @@ const ChatContext = createContext<chatContextType>({
 	members: [],
 	errors: [],
 	showError: () => {},
-	deleteError: () => {}
+	deleteError: () => {},
 });
 
 export function ChatProvider({ children }: { children: ReactNode }) {
-	const [theme, setTheme] = useState<string>('midnight_shadow');
-	const [roomId, setRoomId] = useState<string>('');
-	const [name, setName] = useState<string>('');
-	const [roomName, setRoomName] = useState<string>('');
+	const [theme, setTheme] = useState<string>("midnight_shadow");
+	const [roomId, setRoomId] = useState<string>("");
+	const [name, setName] = useState<string>("");
+	const [roomName, setRoomName] = useState<string>("");
 	const [joined, setJoined] = useState<boolean>(false);
 	const [messages, setMessages] = useState<MessageType[]>([]);
 	const [members, setMembers] = useState<string[]>([]);
 	const [socket, setSocket] = useState<Socket | null>(null);
 	const closeSession = () => {
-		setRoomId('');
-		setName('');
-		setRoomName('');
-		setTheme('');
+		setRoomId("");
+		setName("");
+		setRoomName("");
+		setTheme("");
 		setMessages([]);
 		setMembers([]);
 		socket?.close();
 		setSocket(null);
 		setJoined(false);
-		console.log('Session closed');
+		console.log("Session closed");
 	};
 
 	const [errors, setErrors] = useState<ErrorType[]>([]);
@@ -74,7 +74,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 		const temp = errors.filter((error) => error.id !== id);
 		setErrors(temp);
 	};
-	const showError = (error: string = 'Something went wrong!') => {
+	const showError = (error: string = "Something went wrong!") => {
 		const temp = id();
 		setErrors([...errors, { message: error, id: temp }]);
 		const timeOut = setTimeout(() => {
@@ -93,18 +93,18 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 			setJoined(true);
 		};
 
-		if (!joined && roomId !== '' && name !== '') connect();
+		if (!joined && roomId !== "" && name !== "") connect();
 	}, [joined, roomId, name]);
 
-	socket?.on('error', (error) => {
-		if (typeof error === 'string') showError(error);
-		if (typeof error?.error === 'string') showError(error.error);
+	socket?.on("error", (error) => {
+		if (typeof error === "string") showError(error);
+		if (typeof error?.error === "string") showError(error.error);
 		showError();
 	});
-	
-	socket?.on('connect_error', (error) => {
+
+	socket?.on("connect_error", (error) => {
 		showError(
-			'Error trying to connect, it might be a problem with our server!'
+			"Error trying to connect, it might be a problem with our server!"
 		);
 	});
 
@@ -114,18 +114,18 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 		const messageObject: MessageType = {
 			username: name,
 			message: message,
-			time: getTime()
+			time: getTime(),
 		};
 		setMessages((messages) => [messageObject, ...messages]);
-		socket?.emit('send_chat', messageObject);
-		console.log('message send');
+		socket?.emit("send_chat", messageObject);
+		console.log("message send");
 	};
 
 	const sendStatus = (status: string) => {
 		let mess = {
-			username: 'ghostchats',
+			username: "ghostchats",
 			message: status,
-			info: true
+			info: true,
 		};
 		console.log(mess);
 		setMessages((messages) => [mess, ...messages]);
@@ -133,36 +133,36 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 
 	useEffect(() => {
 		if (!socket) return;
-		socket?.on('receive_chat', (data) => {
+		socket?.on("receive_chat", (data) => {
 			let mess: MessageType = data.data;
 			if (!members.includes(mess.username))
 				setMembers((members) => [...members, mess.username]);
 			setMessages((messages) => [mess, ...messages]);
 		});
 		return () => {
-			socket?.off('receive_chat');
+			socket?.off("receive_chat");
 		};
 	}, [socket, messages, members]);
 
 	useEffect(() => {
 		if (!socket) return;
-		socket?.on('user_joined', (data) => {
+		socket?.on("user_joined", (data) => {
 			sendStatus(`${data} joined the room`);
 			members.push(data);
 		});
 		return () => {
-			socket?.off('user_joined');
+			socket?.off("user_joined");
 		};
 	}, [socket, messages, members]);
 
 	useEffect(() => {
 		if (!socket) return;
-		socket?.on('user_left', (data) => {
+		socket?.on("user_left", (data) => {
 			sendStatus(`${data} left the room`);
 			if (members.includes(data)) members.splice(members.indexOf(data), 1);
 		});
 		return () => {
-			socket?.off('user_left');
+			socket?.off("user_left");
 		};
 	}, [socket, members, messages]);
 
@@ -183,7 +183,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 				members,
 				errors,
 				showError,
-				deleteError
+				deleteError,
 			}}
 		>
 			{children}

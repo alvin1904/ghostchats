@@ -40,7 +40,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type='number'] {
+input[type="number"] {
 	-moz-appearance: textfield;
 	appearance: textfield;
 }
@@ -108,10 +108,10 @@ textarea {
 }
 
 :root {
-	--bg-pic: '';
-	--bg-default-color: '#000';
-	--bg-light: '';
-	--bg-accent: '';
+	--bg-pic: "";
+	--bg-default-color: "#000";
+	--bg-light: "";
+	--bg-accent: "";
 }
 body {
 	min-height: 100vh;
@@ -121,25 +121,25 @@ body {
 
 .goblin_green {
 	--bg-default-color: rgb(27, 56, 49);
-	--bg-pic: url('../../assets/bg/goblin_green.webp');
+	--bg-pic: url("../../assets/bg/goblin_green.webp");
 	--bg-light: rgba(6, 134, 104, 0.4);
 	--bg-accent: #065542;
 }
 .midnight_shadow {
 	--bg-default-color: rgb(34, 34, 34);
-	--bg-pic: url('../../assets/bg/midnight_shadow.webp');
+	--bg-pic: url("../../assets/bg/midnight_shadow.webp");
 	--bg-light: rgba(54, 54, 54, 0.6);
 	--bg-accent: #3f3f3f;
 }
 .phantom_blue {
 	--bg-default-color: rgb(32, 117, 163);
-	--bg-pic: url('../../assets/bg/phantom_blue.webp');
+	--bg-pic: url("../../assets/bg/phantom_blue.webp");
 	--bg-light: rgba(104, 176, 216, 0.3);
 	--bg-accent: #2692cd;
 }
 .mystic_violet {
 	--bg-default-color: rgb(116, 43, 140);
-	--bg-pic: url('../../assets/bg/mystic_violet.webp');
+	--bg-pic: url("../../assets/bg/mystic_violet.webp");
 	--bg-light: rgba(185, 117, 208, 0.5);
 	--bg-accent: #8e42ab;
 }

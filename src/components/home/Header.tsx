@@ -1,6 +1,6 @@
-import styles from '@/app/styles/home.module.css';
-import Image from 'next/image';
-import img from '@/assets/logo/logo-white.png';
+import styles from "@/app/styles/home.module.css";
+import Image from "next/image";
+import img from "@/assets/logo/logo-white.png";
 
 export default function Header() {
 	return (

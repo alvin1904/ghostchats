@@ -1,14 +1,14 @@
-import styles from '@/app/styles/mainSection.module.css';
-import { ChangeEvent, useRef, useState } from 'react';
-import { acceptedChars } from '@/utils/types/code';
-import Popover from './Popover/Popover';
-import { useChatContext } from '@/context/chatContext';
+import styles from "@/app/styles/mainSection.module.css";
+import { ChangeEvent, useRef, useState } from "react";
+import { acceptedChars } from "@/utils/types/code";
+import Popover from "./Popover/Popover";
+import { useChatContext } from "@/context/chatContext";
 // import { apiLinkGenerator } from '@/utils/linkGenerator';
-import Loading from '../Loading';
+import Loading from "../Loading";
 
 export default function MainSection() {
 	const nameRef = useRef<HTMLInputElement>(null);
-	const [code, setCode] = useState<string[]>(['', '', '', '', '', '']);
+	const [code, setCode] = useState<string[]>(["", "", "", "", "", ""]);
 	const [showPopover, setShowPopover] = useState<boolean>(false);
 	// const [loading1, setLoading1] = useState<boolean>(false);
 	const [loading2, setLoading2] = useState<boolean>(false);
@@ -18,15 +18,15 @@ export default function MainSection() {
 	const checkCode = () => {
 		for (let c in code) {
 			let ch = code[c];
-			if (ch === '' || !acceptedChars.includes(ch)) return false;
+			if (ch === "" || !acceptedChars.includes(ch)) return false;
 		}
 		return true;
 	};
 
 	const joinRoom = async () => {
-		if (!checkCode()) return showError('Check the code and try again!');
+		if (!checkCode()) return showError("Check the code and try again!");
 		setLoading2(true);
-		const roomCode = code.join('');
+		const roomCode = code.join("");
 		setRoomId(roomCode);
 		setShowPopover(true);
 		setLoading2(false);
@@ -35,28 +35,28 @@ export default function MainSection() {
 	const handleChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		// FOR DESKTOP
 		const changeFocus = (value: string, id: number) => {
-			const target = `key${value === '' ? id - 1 : id + 1}`;
+			const target = `key${value === "" ? id - 1 : id + 1}`;
 			const input = document.getElementById(target);
 			if (input) input.focus();
 		};
 		e.preventDefault();
 		// HANDLING INPUT
 		const value = e.key;
-		if (value === 'Enter') return joinRoom();
+		if (value === "Enter") return joinRoom();
 		if (!acceptedChars.includes(value)) return;
 		const id = parseInt(e.currentTarget.id[e.currentTarget.id.length - 1]);
 		setCode((prevCode) => {
 			const temp = [...prevCode];
-			if (value === 'Backspace') temp[id] = '';
+			if (value === "Backspace") temp[id] = "";
 			else {
 				let existing = temp[id];
-				if (id + 1 === 6 && existing !== '') return temp;
-				temp[existing === '' ? id : id + 1] = value;
+				if (id + 1 === 6 && existing !== "") return temp;
+				temp[existing === "" ? id : id + 1] = value;
 			}
 			return temp;
 		});
 		// CHANGING FOCUS
-		if (value === 'Backspace') changeFocus('', id);
+		if (value === "Backspace") changeFocus("", id);
 		else changeFocus(value, id);
 	};
 
@@ -69,7 +69,7 @@ export default function MainSection() {
 			temp[id] = value;
 			return temp;
 		});
-		if (value === '') {
+		if (value === "") {
 			const target = `key${id - 1}`;
 			const input = document.getElementById(target);
 			if (input) input.focus();
@@ -132,7 +132,7 @@ export default function MainSection() {
 					})}
 				</div>
 				<button type="submit">
-					{loading2 ? <Loading /> : 'Join dark room'}
+					{loading2 ? <Loading /> : "Join dark room"}
 				</button>
 			</form>
 			<Popover showPopover={showPopover} />

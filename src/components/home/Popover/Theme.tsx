@@ -1,4 +1,4 @@
-import styles from '@/app/styles/popover.module.css';
+import styles from "@/app/styles/popover.module.css";
 type ThemeProps = {
 	name: string;
 };

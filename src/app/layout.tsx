@@ -1,17 +1,17 @@
-import Head from 'next/head';
-import '@/app/styles/globals.css';
-import type { Metadata } from 'next';
-import { ChatProvider } from '@/context/chatContext';
-import ErrorHandler from '@/components/ErrorHandler';
+import Head from "next/head";
+import "@/app/styles/globals.css";
+import type { Metadata } from "next";
+import { ChatProvider } from "@/context/chatContext";
+import ErrorHandler from "@/components/ErrorHandler";
 
 export const metadata: Metadata = {
-	title: 'Ghastchats',
+	title: "Ghastchats",
 	description:
-		'GhostChat is an ephemeral group chat platform that allows you to create private rooms and engage in secure, anonymous conversations. With GhostChat, you can generate unique codes, share them with others, and experience the thrill of ghostly connections. Once the window closes, all traces vanish, leaving no digital footprints behind.'
+		"GhostChat is an ephemeral group chat platform that allows you to create private rooms and engage in secure, anonymous conversations. With GhostChat, you can generate unique codes, share them with others, and experience the thrill of ghostly connections. Once the window closes, all traces vanish, leaving no digital footprints behind.",
 };
 
 export default function RootLayout({
-	children
+	children,
 }: {
 	children: React.ReactNode;
 }) {
@@ -26,7 +26,7 @@ export default function RootLayout({
 				<ChatProvider>
 					<ErrorHandler />
 					{children}
-					</ChatProvider>
+				</ChatProvider>
 			</body>
 		</html>
 	);

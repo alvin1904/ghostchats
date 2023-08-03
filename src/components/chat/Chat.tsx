@@ -1,17 +1,17 @@
-import styles from '@/app/styles/chatscren.module.css';
-import { IoSend } from 'react-icons/io5';
-import ChatSpace from '@/components/chat/ChatSpace';
-import { useChatContext } from '@/context/chatContext';
-import { useRef } from 'react';
+import styles from "@/app/styles/chatscren.module.css";
+import { IoSend } from "react-icons/io5";
+import ChatSpace from "@/components/chat/ChatSpace";
+import { useChatContext } from "@/context/chatContext";
+import { useRef } from "react";
 
 export default function ChatScreen() {
 	const { sendMessage } = useChatContext();
 	const chatRef = useRef<HTMLInputElement>(null);
 	const handleSend = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (chatRef.current?.value === '' || !chatRef?.current?.value) return;
+		if (chatRef.current?.value === "" || !chatRef?.current?.value) return;
 		sendMessage(chatRef.current?.value as string);
-		chatRef.current.value = '';
+		chatRef.current.value = "";
 	};
 	return (
 		<div className={styles.chats}>

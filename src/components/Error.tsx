@@ -1,6 +1,6 @@
-import { useChatContext } from '@/context/chatContext';
-import { ErrorType } from '@/utils/types/types';
-import { IoClose } from 'react-icons/io5';
+import { useChatContext } from "@/context/chatContext";
+import { ErrorType } from "@/utils/types/types";
+import { IoClose } from "react-icons/io5";
 
 type ErrorProps = ErrorType;
 

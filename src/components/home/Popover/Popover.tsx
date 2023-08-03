@@ -1,21 +1,21 @@
-import styles from '@/app/styles/popover.module.css';
-import Theme from './Theme';
-import { use, useEffect, useRef, useState } from 'react';
-import { themes } from '@/constants/constants';
-import { useChatContext } from '@/context/chatContext';
-import { useRouter } from 'next/navigation';
-import Loading from '@/components/Loading';
+import styles from "@/app/styles/popover.module.css";
+import Theme from "./Theme";
+import { use, useEffect, useRef, useState } from "react";
+import { themes } from "@/constants/constants";
+import { useChatContext } from "@/context/chatContext";
+import { useRouter } from "next/navigation";
+import Loading from "@/components/Loading";
 
 type Props = {
 	showPopover: boolean;
 };
 
 function convertToTitleCase(inputString: string) {
-	let words = inputString.split('_');
+	let words = inputString.split("_");
 	let titleCaseWords = words.map(
 		(word) => word.charAt(0).toUpperCase() + word.slice(1)
 	);
-	let titleCaseString = titleCaseWords.join(' ');
+	let titleCaseString = titleCaseWords.join(" ");
 	return titleCaseString;
 }
 
@@ -30,11 +30,11 @@ export default function Popover(props: Props) {
 	const onGoToRoom = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const name = nameRef.current?.value;
-		if (!name) return showError('Please enter your name!');
+		if (!name) return showError("Please enter your name!");
 		setLoading(true);
 		setName(name);
 		setTheme(getTheme());
-		router.push('/chat');
+		router.push("/chat");
 		setLoading(false);
 	};
 	useEffect(() => {
@@ -62,7 +62,7 @@ export default function Popover(props: Props) {
 							<li
 								key={index}
 								className={
-									theme + ' ' + (selected === index ? styles.selected : '')
+									theme + " " + (selected === index ? styles.selected : "")
 								}
 								onClick={() => setSelected(allThemes.indexOf(theme))}
 							>
@@ -73,7 +73,7 @@ export default function Popover(props: Props) {
 				</ul>
 			</div>
 			<button type="submit" className={styles.button}>
-				{loading ? <Loading color="white" /> : 'Go to dark room'}
+				{loading ? <Loading color="white" /> : "Go to dark room"}
 			</button>
 		</form>
 	);

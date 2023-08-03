@@ -1,5 +1,5 @@
-import styles from '@/app/styles/chatscren.module.css';
-import { useChatContext } from '@/context/chatContext';
+import styles from "@/app/styles/chatscren.module.css";
+import { useChatContext } from "@/context/chatContext";
 
 export default function ChatSpace() {
 	const { name, messages } = useChatContext();
