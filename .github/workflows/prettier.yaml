@@ -29,7 +29,11 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "style: format code with prettier"
-          git push
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "style: format code with prettier"
+            git push
+          else
+            echo "No changes to commit"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
