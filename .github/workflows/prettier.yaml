@@ -31,3 +31,5 @@ jobs:
           git add .
           git commit -m "style: format code with prettier"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
