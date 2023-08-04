@@ -1,5 +1,4 @@
 "use client";
-
 import styles from "@/app/styles/home.module.css";
 import { montserratFont } from "@/utils/fonts";
 import Gradients from "@/components/home/Gradients";
