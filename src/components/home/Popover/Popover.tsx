@@ -23,7 +23,6 @@ export default function Popover(props: Props) {
 	const nameRef = useRef<HTMLInputElement>(null);
 	const allThemes: string[] = Object.values(themes);
 	const [selected, setSelected] = useState<number>(0);
-	const [loading, setLoading] = useState<boolean>(false);
 	const { setName, setTheme, showError } = useChatContext();
 	const router = useRouter();
 	const getTheme = () => allThemes[selected];
@@ -31,11 +30,9 @@ export default function Popover(props: Props) {
 		e.preventDefault();
 		const name = nameRef.current?.value;
 		if (!name) return showError("Please enter your name!");
-		setLoading(true);
 		setName(name);
 		setTheme(getTheme());
 		router.push("/chat");
-		setLoading(false);
 	};
 	useEffect(() => {
 		if (props.showPopover) nameRef.current?.focus();
@@ -73,7 +70,7 @@ export default function Popover(props: Props) {
 				</ul>
 			</div>
 			<button type="submit" className={styles.button}>
-				{loading ? <Loading color="white" /> : "Go to dark room"}
+				Go to dark room
 			</button>
 		</form>
 	);

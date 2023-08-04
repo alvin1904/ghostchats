@@ -79,31 +79,7 @@ export default function MainSection() {
 			if (input) input.focus();
 		}
 	};
-
-	// const onCreate = async (e: React.FormEvent<HTMLFormElement>) => {
-	// 	e.preventDefault();
-	// 	const name = nameRef.current?.value;
-	// 	if (!name) return showError('Enter a room name!');
-	// 	setLoading1(true);
-	// 	setRoomName(name);
-	// 	try {
-	// 		const res = await fetch(apiLinkGenerator('room-ids'));
-	// 		if (res.status !== 200)
-	// 			return showError(
-	// 				'Something went wrong while creating the room! Try again later.'
-	// 			);
-	// 		const data = await res.json();
-	// 		const id = data?.data?.roomId;
-	// 		if (!id) return showError('Server is down!');
-	// 		setRoomId(id.toString());
-	// 		setShowPopover(true);
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 		showError("Couldn't connect to the server!");
-	// 	}
-	// 	setLoading1(false);
-	// };
-
+	
 	const onJoin = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		joinRoom();
