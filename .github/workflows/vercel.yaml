@@ -1,11 +1,12 @@
 name: Deploy on Vercel
-
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     if: github.repository == 'alvin1904/ghostchats-client'
@@ -15,6 +16,11 @@ jobs:
         uses: actions/checkout@v3
       - name: install vercel cli
         run: npm install -global vercel@latest
+      - name: Set environment variables from .env file
+        run: |
+          set -a
+          source .env
+          set +a
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
