@@ -17,6 +17,7 @@ export default function ChatSpace() {
 						return (
 							<div key={index} className={styles.mymessage}>
 								<div>
+									<div className={styles.username}>You</div>
 									<div className={styles.body}>{message.message}</div>
 								</div>
 								<div className={styles.time}>{message?.time}</div>

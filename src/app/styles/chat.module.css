@@ -12,7 +12,7 @@
 	align-items: center;
 }
 .chat {
-	width: 85%;
+	width: 90%;
 	height: 88%;
 	border-radius: 10px;
 	background-color: var(--bg-light);
@@ -30,15 +30,13 @@
 	position: absolute;
 	z-index: 100;
 	top: 0;
-	height: 55px;
 	width: 100%;
 	background: var(--bg-accent);
 	border-radius: 15px 15px 0px 0px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0px 1.25rem;
-	font-size: 1.25rem;
+	padding: 10px 1.25rem;
 }
 .chat_settings {
 	transition: all 0.5s ease;

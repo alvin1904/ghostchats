@@ -18,7 +18,7 @@ export default function ChatNav(props: PropsType) {
 	return (
 		<nav className={styles.chat_header}>
 			<div className={styles.exit} onClick={onExit}>
-				<IoExit size={30} />
+				<IoExit size={26} />
 			</div>
 			<div>{props.chatName}</div>
 		</nav>

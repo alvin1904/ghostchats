@@ -80,7 +80,6 @@
 .messages {
 	display: flex;
 	flex-direction: column-reverse;
-	gap: 10px;
 }
 .message,
 .mymessage {
@@ -91,27 +90,24 @@
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 1fr 55px;
-	padding: 5px 15px;
-	padding-right: 10px;
+	padding: 8px 10px 15px 15px;
 }
 .message {
 	min-height: 50px;
 	background-color: #fff;
 	border-radius: 15px 15px 15px 0px;
 	align-self: start;
-	gap: 15px;
 }
 .mymessage {
-	min-height: 40px;
+	min-height: 30px;
 	background-color: var(--bg-accent);
 	border-radius: 15px 15px 0px 15px;
 	color: white;
 	align-self: end;
-	gap: 0px;
 }
 .mymessage > div {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 }
 .username {
 	color: #000;
@@ -121,10 +117,9 @@
 }
 .body {
 	color: #000;
-	font-size: 1rem;
+	font-size: 0.8rem;
 	font-weight: 300;
-	line-height: normal;
-	margin-top: 4px;
+	line-height: 140%;
 }
 .mymessage * {
 	color: white;
@@ -158,10 +153,10 @@
 		max-width: 400px;
 	}
 	.username {
-		font-size: 1rem;
+		font-size: 0.9rem;
 	}
 	.body {
-		font-size: 1.2rem;
+		font-size: 1rem;
 		margin-top: 6px;
 	}
 	.status {
