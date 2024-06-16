@@ -1,5 +1,6 @@
 import styles from "@/app/styles/chatscren.module.css";
 import { useChatContext } from "@/context/chatContext";
+import parseMessage from "@/utils/parseMessage";
 
 export default function ChatSpace() {
 	const { name, messages } = useChatContext();
@@ -18,7 +19,7 @@ export default function ChatSpace() {
 							<div key={index} className={styles.mymessage}>
 								<div>
 									<div className={styles.username}>You</div>
-									<div className={styles.body}>{message.message}</div>
+									{parseMessage(message.message)}
 								</div>
 								<div className={styles.time}>{message?.time}</div>
 							</div>
@@ -28,7 +29,7 @@ export default function ChatSpace() {
 							<div key={index} className={styles.message}>
 								<div className={styles.left}>
 									<div className={styles.username}>{message.username}</div>
-									<div className={styles.body}>{message.message}</div>
+									{parseMessage(message.message)}
 								</div>
 								<div className={styles.time}>{message?.time}</div>
 							</div>

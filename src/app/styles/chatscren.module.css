@@ -121,6 +121,9 @@
 	font-weight: 300;
 	line-height: 140%;
 }
+.link {
+	text-decoration: underline;
+}
 .mymessage * {
 	color: white;
 }
