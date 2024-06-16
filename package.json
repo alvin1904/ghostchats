@@ -20,7 +20,7 @@
 		"react-dom": "18.2.0",
 		"react-icons": "^4.10.1",
 		"sharp": "^0.32.6",
-		"socket.io-client": "^4.7.1",
+		"socket.io-client": "^4.7.5",
 		"typescript": "5.1.6",
 		"utf-8-validate": "^5.0.10"
 	},
